@@ -17,18 +17,18 @@
     file_size=50
 
     # Set file location to put sample data
-    file_location_root=~/AWS_data_test # We will make this on the fly
-    file_location_a=$file_location_root\/a # We will make this on the fly
-    file_location_b=$file_location_root\/b # We will make this on the fly
-    file_location_local_scratch=$file_location_root\/scratch # We will make this on the fly
+    file_location_root=~/AWS_data_test				# We will make this on the fly
+    file_location_a=$file_location_root\/a			# We will make this on the fly
+    file_location_b=$file_location_root\/b			# We will make this on the fly
+    file_location_local_scratch=$file_location_root\/scratch	# We will make this on the fly
     file_name=file_test
 
     # Set number of files to create
     file_number=5
 
-    # Times to repeat operation
-    repeats=10
-    repeats_minus_1=$(echo $(( $repeats - 1 )))
+    # Times to perform operation
+    iterations=10
+    iterations_minus_1=$(echo $(( $iterations - 1 )))		# This is just to 
 
 
 # The workflow starts here
@@ -38,11 +38,11 @@ echo "We will create $file_number files $file_size MiB in size here $file_locati
 echo "We will them move these files to $file_location_b."
 echo "We will create a scratch folder here $file_location_local_scratch."
 echo "We will download the files from $file_location_b to $file_location_local_scratch."
-echo "We will then clean everything up before repeating this $repeats_minus_1 times."
+echo "We will then clean everything up before repeating this $iterations_minus_1 times."
 echo "If this is not what you want to do press Ctrl-C and edit the script to change functionality."
 read -p "If this is what you want press return to continue."
 
-for i in $(seq 1 $repeats);
+for i in $(seq 1 $iterations);
 do
  # Create directories
  echo "Creating directories"
