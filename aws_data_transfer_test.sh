@@ -14,7 +14,7 @@
 # Variables (This is the only bit that needs user configuration)
 
     # Set file size in megabytes (This is more user friendly than using bytes)
-    file_size=100
+    file_size=10
 
     # Set file location to put sample data
     file_location_root=~/AWS_data_test			# We will make this on the fly
@@ -27,7 +27,7 @@
     file_number=10
 
     # Times to perform operation
-    iterations=1
+    iterations=5
     iterations_minus_1=$(echo $(( $iterations - 1 )))	# This is just to correct the number of repeats
 
 
