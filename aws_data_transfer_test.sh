@@ -14,8 +14,7 @@
 # Variables (This is the only bit that needs user configuration)
 
     # Set file size in megabytes (This is more user friendly than using bytes)
-    file_size_in_meg=10
-    file_size=$(echo $(( $file_size_in_meg * 1024 )))
+    file_size=10
 
     # Set file location to put sample data
     file_location_a=~/a # This should be an existing folder
@@ -34,7 +33,7 @@
 # The workflow starts here
 
 # Tell user what we are going to do
-echo "We will create $file_number files $file_size_in_meg MiB in size here $file_location_a."
+echo "We will create $file_number files $file_size MiB in size here $file_location_a."
 echo "We will them move these files to $file_location_b."
 echo "We will create a scratch folder here $file_location_local_scratch."
 echo "We will download the files from $file_location_b to $file_location_local_scratch."
@@ -47,7 +46,7 @@ do
  # Create some test data in file location A
  for i in $(seq 1 $file_number);
  do
-  dd if=/dev/urandom of=$file_location_a\/$file_name\_$i count=$file_size bs=1024;
+  dd if=/dev/urandom of=$file_location_a\/$file_name\_$i count=$file_size bs=1M;
  done
 
  # Move test data from file location A to file location B
