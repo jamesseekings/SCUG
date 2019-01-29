@@ -20,7 +20,7 @@ read -p "How many files would you like to create? " file_number
 read -p "How large (In mebibytes) do you want your file(s) to be? " file_size
 
 # Set file location to put sample data
-read -p "Where would you like the temporary data directories located? " -e -i ~/AWS_data_test file_location_root
+read -p "Where would you like the temporary data directories created (Ideally locally)? " -e -i ~/AWS_data_test file_location_root
 file_location_a=$file_location_root\/a		# We will make this on the fly
 file_location_b=$file_location_root\/b		# We will make this on the fly
 file_location_scratch=$file_location_root\/scratch	# We will make this on the fly
@@ -33,11 +33,13 @@ echo " $file_location_a"
 echo " $file_location_b"
 echo " $file_location_scratch"
 echo ""
-echo "We will create $file_number files $file_size MiB in size here $file_location_a. This should really be a local folder."
+echo "We will create $file_number files $file_size MiB in size here $file_location_a."
 echo ""
-echo "We will move these files to $file_location_b. This is to simulate writing data to a remote location."
+echo "We will move these files to $file_location_b."
+echo "This simulates writing to remote location."
 echo ""
-echo "We will download the files from $file_location_b to $file_location_scratch. This is to simulate reading data from a remote location."
+echo "We will download the files from $file_location_b to $file_location_scratch."
+echo "This simulates reads from remote location."
 echo ""
 echo "If this is not what you want to do press Ctrl-C and edit the script to change functionality."
 echo ""
