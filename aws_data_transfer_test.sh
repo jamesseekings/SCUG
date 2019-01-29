@@ -10,47 +10,38 @@
 # Then clean everything up before repeating itself (if desired)
 #######################################################################################
 
+# Clear the screen to reduce clutter
+clear
 
-# Variables (This is the only bit that needs user configuration)
+# Variable setup (File locations is the only bit that needs manual configuration)
 
-    # Set file size in megabytes (This is more user friendly than using bytes)
-    file_size=10
+# Set number and size of files to create
+read -p "How many files would you like to create? " file_number
+read -p "How large (In mebibytes) do you want your file(s) to be? " file_size
 
-    # Set file location to put sample data
-    file_location_root=~/AWS_data_test			# We will make this on the fly
-    file_location_a=$file_location_root\/a		# We will make this on the fly
-    file_location_b=$file_location_root\/b		# We will make this on the fly
-    file_location_scratch=$file_location_root\/scratch	# We will make this on the fly
-    file_name=file_test
-
-    # Set number of files to create
-    file_number=10
-
-    # Times to perform operation
-    iterations=5
-    iterations_minus_1=$(echo $(( $iterations - 1 )))	# This is just to correct the number of repeats
-
-
-# The workflow starts here
+# Set file location to put sample data
+read -p "Where would you like the temporary data directories located? " -e -i ~/AWS_data_test file_location_root
+file_location_a=$file_location_root\/a		# We will make this on the fly
+file_location_b=$file_location_root\/b		# We will make this on the fly
+file_location_scratch=$file_location_root\/scratch	# We will make this on the fly
+file_name=file_test
 
 # Tell user what we are going to do
-clear
-echo "We will create some directories to work in;"
+echo ""
+echo "We will create some directories to work in:"
 echo " $file_location_a"
 echo " $file_location_b"
 echo " $file_location_scratch"
 echo ""
-echo "We will create $file_number files $file_size MiB in size here $file_location_a."
+echo "We will create $file_number files $file_size MiB in size here $file_location_a. This should really be a local folder."
 echo ""
-echo "We will move these files to $file_location_b."
+echo "We will move these files to $file_location_b. This is to simulate writing data to a remote location."
 echo ""
-echo "We will download the files from $file_location_b to $file_location_scratch."
-echo ""
-echo "We will clean everything up before repeating this $iterations_minus_1 times."
+echo "We will download the files from $file_location_b to $file_location_scratch. This is to simulate reading data from a remote location."
 echo ""
 echo "If this is not what you want to do press Ctrl-C and edit the script to change functionality."
 echo ""
-read -p "If this is what you want press return to continue."
+read -p "How many times do you want to perform this operation? " iterations
 
 for i in $(seq 1 $iterations);
 do
