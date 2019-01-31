@@ -21,9 +21,9 @@ read -p "How large (In mebibytes) do you want your file(s) to be? " file_size
 
 # Set file location to put sample data
 read -p "Where would you like the temporary data directories created (Ideally locally)? " -e -i ~/s3-file-transfer-test file_location_root
-file_location_dd=$file_location_root\/dd							# We will make this on the fly
+file_location_dd=$file_location_root\/dd			# We will make this on the fly
 read -p "Where is your remote storage? " file_location_s3
-file_location_scratch=$file_location_root\/scratch						# We will make this on the fly
+file_location_scratch=$file_location_root\/scratch		# We will make this on the fly
 file_name=file_test
 
 # Tell user what we are going to do
@@ -58,16 +58,16 @@ do
   dd if=/dev/urandom of=$file_location_dd\/$file_name\_$i count=$file_size bs=1M;
  done
 
- # Move test data from file location dd to file location S3
- echo "Moving data files from DD to S3"
+ # Move test data from file location DD to file location S3
+ echo "Moving data file(s) from DD to S3"
  aws s3 mv $file_location_dd $file_location_s3 --recursive --exclude "*" --include "$file_name*"
 
  # Download test data from S3 to scratch folder
- echo "Copying data files from S3 to scratch"
+ echo "Copying data file(s) from S3 to scratch"
  aws s3 cp $file_location_s3 $file_location_scratch --recursive --exclude "*" --include "$file_name*"
 
  # Delete test data
- echo "Cleaning up data files"
+ echo "Cleaning up data file(s)"
  aws s3 rm $file_location_s3 --recursive --exclude "*" --include "$file_name*"
  rm -vr $file_location_scratch\/*
  rmdir -v $file_location_dd
